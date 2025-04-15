@@ -2,6 +2,8 @@
 
 A customizable dropdown select component for React Native, powered by **React Native Reanimated**, **React Native Gesture Handler**, and **React Native SVG** .
 
+![Alt text](https://github.com/Dhia-Ben-Hamouda/rn-custom-select-dropdown/blob/main/src/assets/preview.gif)
+
 ## ✨ Features
 
 - Smooth animations using `react-native-reanimated`
@@ -109,13 +111,5 @@ export default function App() {
 ## 📚 Contributing
 
 Issues and pull requests are welcome! Please open an issue first to discuss major changes.
-
----
-
-## 📄 License
-
-MIT
-
----
 
 Made with ❤️ by Dhia Ben Hamouda
