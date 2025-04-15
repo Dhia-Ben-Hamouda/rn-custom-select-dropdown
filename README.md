@@ -40,11 +40,39 @@ Make sure you’ve properly configured:
 import React, { useState } from "react";
 import Select, { ISelectItem } from "rn-custom-select-dropdown";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { belgium, brazil, england, france, spain, tunisia } from "./assets";
 
-const options: Array<ISelectItem<string>> = [
-  { label: "Option One", value: "1" },
-  { label: "Option Two", value: "2" },
-  { label: "Option Three", value: "3" },
+const countries: Array<ISelectItem<string>> = [
+  {
+    label: "Tunisia",
+    value: "Tunisia",
+    picture: tunisia,
+  },
+  {
+    label: "France",
+    value: "France",
+    picture: france,
+  },
+  {
+    label: "Brazil",
+    value: "Brazil",
+    picture: brazil,
+  },
+  {
+    label: "England",
+    value: "England",
+    picture: england,
+  },
+  {
+    label: "Belgium",
+    value: "Belgium",
+    picture: belgium,
+  },
+  {
+    label: "Spain",
+    value: "Spain",
+    picture: spain,
+  },
 ];
 
 export default function App() {
@@ -54,9 +82,9 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Select
-        data={options}
+        data={countries}
         selectedValue={selectedValue}
-        onValueChange={setSelectedValue}
+        onChange={setSelectedValue}
       />
     </GestureHandlerRootView>
   );
@@ -67,42 +95,42 @@ export default function App() {
 
 ## 🔧 Props
 
-| Prop                          | Type                                 | Default      | Description                                            |
-| ----------------------------- | ------------------------------------ | ------------ | ------------------------------------------------------ |
-| `data`                        | `ISelectItem<T>[]`                   | **required** | List of items to show in the dropdown                  |
-| `value`                       | `ISelectItem<T> \| null`             | `null`       | The currently selected item                            |
-| `onChange`                    | `(newValue: ISelectItem<T>) => void` | `undefined`  | Callback when an item is selected                      |
-| `placeholder`                 | `string`                             | `"Select"`   | Placeholder text when no value is selected             |
-| `label`                       | `string`                             | `undefined`  | Optional label displayed above the select field        |
-| `isRequired`                  | `boolean`                            | `false`      | Whether the field is required                          |
-| `isError`                     | `boolean`                            | `false`      | Indicates error state                                  |
-| `errorMessage`                | `string`                             | `undefined`  | Error message displayed when `isError` is true         |
-| `labelStyle`                  | `StyleProp<TextStyle>`               | `undefined`  | Style for the label text                               |
-| `containerStyle`              | `StyleProp<ViewStyle>`               | `undefined`  | Style for the outer container                          |
-| `inputContainerStyle`         | `StyleProp<ViewStyle>`               | `undefined`  | Style for the input wrapper                            |
-| `itemBackgroundColor`         | `string`                             | `undefined`  | Background color for each item                         |
-| `selectedItemBackgroundColor` | `string`                             | `undefined`  | Background color for the selected item                 |
-| `itemLabelColor`              | `string`                             | `undefined`  | Text color for unselected items                        |
-| `selectedItemLabelColor`      | `string`                             | `undefined`  | Text color for the selected item                       |
-| `itemLabelStyle`              | `StyleProp<TextStyle>`               | `undefined`  | Custom text style for item labels                      |
-| `selectedItemLabelStyle`      | `StyleProp<TextStyle>`               | `undefined`  | Custom text style for the selected item label          |
-| `placeholderStyle`            | `StyleProp<TextStyle>`               | `undefined`  | Style for the placeholder text                         |
-| `checkColor`                  | `string`                             | `undefined`  | Color of the check icon shown for selected item        |
-| `checkSize`                   | `number`                             | `undefined`  | Size of the check icon                                 |
-| `arrowColor`                  | `string`                             | `undefined`  | Color of the dropdown arrow                            |
-| `arrowSize`                   | `number`                             | `undefined`  | Size of the dropdown arrow                             |
-| `arrowContainerStyle`         | `StyleProp<ViewStyle>`               | `undefined`  | Style for the arrow container                          |
-| `customArrowIcon`             | `React.ReactNode`                    | `undefined`  | Custom arrow icon component                            |
-| `shouldCloseAfterSelection`   | `boolean`                            | `true`       | Determines whether the dropdown closes after selection |
-| `isArrowShown`                | `boolean`                            | `true`       | Show or hide the arrow icon                            |
-| `onSelectOpened`              | `() => void`                         | `undefined`  | Callback triggered when the dropdown opens             |
-| `onSelectClosed`              | `() => void`                         | `undefined`  | Callback triggered when the dropdown closes            |
+| Prop                          | Type                                 | Default           | Description                                            |
+| ----------------------------- | ------------------------------------ | ----------------- | ------------------------------------------------------ |
+| `data`                        | `ISelectItem<T>[]`                   | **required**      | List of items to show in the dropdown                  |
+| `value`                       | `ISelectItem<T> \| null`             | `null`            | The currently selected item                            |
+| `onChange`                    | `(newValue: ISelectItem<T>) => void` | `undefined`       | Callback when an item is selected                      |
+| `placeholder`                 | `string`                             | `"Select option"` | Placeholder text when no value is selected             |
+| `label`                       | `string`                             | `undefined`       | Optional label displayed above the select field        |
+| `isRequired`                  | `boolean`                            | `false`           | Whether the field is required                          |
+| `isError`                     | `boolean`                            | `false`           | Indicates error state                                  |
+| `errorMessage`                | `string`                             | `undefined`       | Error message displayed when `isError` is true         |
+| `labelStyle`                  | `StyleProp<TextStyle>`               | `undefined`       | Style for the label text                               |
+| `containerStyle`              | `StyleProp<ViewStyle>`               | `undefined`       | Style for the outer container                          |
+| `inputContainerStyle`         | `StyleProp<ViewStyle>`               | `undefined`       | Style for the input wrapper                            |
+| `itemBackgroundColor`         | `string`                             | `undefined`       | Background color for each item                         |
+| `selectedItemBackgroundColor` | `string`                             | `undefined`       | Background color for the selected item                 |
+| `itemLabelColor`              | `string`                             | `undefined`       | Text color for unselected items                        |
+| `selectedItemLabelColor`      | `string`                             | `undefined`       | Text color for the selected item                       |
+| `itemLabelStyle`              | `StyleProp<TextStyle>`               | `undefined`       | Custom text style for item labels                      |
+| `selectedItemLabelStyle`      | `StyleProp<TextStyle>`               | `undefined`       | Custom text style for the selected item label          |
+| `placeholderStyle`            | `StyleProp<TextStyle>`               | `undefined`       | Style for the placeholder text                         |
+| `checkColor`                  | `string`                             | `undefined`       | Color of the check icon shown for selected item        |
+| `checkSize`                   | `number`                             | `undefined`       | Size of the check icon                                 |
+| `arrowColor`                  | `string`                             | `undefined`       | Color of the dropdown arrow                            |
+| `arrowSize`                   | `number`                             | `undefined`       | Size of the dropdown arrow                             |
+| `arrowContainerStyle`         | `StyleProp<ViewStyle>`               | `undefined`       | Style for the arrow container                          |
+| `customArrowIcon`             | `React.ReactNode`                    | `undefined`       | Custom arrow icon component                            |
+| `shouldCloseAfterSelection`   | `boolean`                            | `true`            | Determines whether the dropdown closes after selection |
+| `isArrowShown`                | `boolean`                            | `true`            | Show or hide the arrow icon                            |
+| `onSelectOpened`              | `() => void`                         | `undefined`       | Callback triggered when the dropdown opens             |
+| `onSelectClosed`              | `() => void`                         | `undefined`       | Callback triggered when the dropdown closes            |
 
 ## 📦 `ISelectItem<T>`
 
 | Prop      | Type                  | Default      | Description                          |
 | --------- | --------------------- | ------------ | ------------------------------------ |
-| `label`   | `string`              | `undefined`  | Text to display for the option       |
+| `label`   | `string`              | **required** | Text to display for the option       |
 | `value`   | `T`                   | **required** | Value associated with the option     |
 | `picture` | `ImageSourcePropType` | `undefined`  | Optional image shown with the option |
 
