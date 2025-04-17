@@ -68,7 +68,7 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Select
         data={countries}
-        selectedValue={selectedValue}
+        value={selectedValue}
         onChange={(newValue) => {
           setSelectedValue(newValue);
         }}
