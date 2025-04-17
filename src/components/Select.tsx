@@ -25,6 +25,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 import Divider from "./Divider";
+import { ISelectItem } from "../types";
 
 const ANIMATION_DURATION = 500;
 const DEFAULT_SELECTED_ITEM_BACKGROUND_COLOR = "#eee";
@@ -176,12 +177,6 @@ function SelectItem<T>({
       </AnimatedPressable>
     </>
   );
-}
-
-export interface ISelectItem<T> {
-  label: string;
-  value: T;
-  picture?: ImageSourcePropType;
 }
 
 interface ISelect<T> {

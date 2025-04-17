@@ -1,10 +1,6 @@
 import React from "react";
-import { ImageSourcePropType, StyleProp, TextStyle, ViewStyle } from "react-native";
-export interface ISelectItem<T> {
-    label: string;
-    value: T;
-    picture?: ImageSourcePropType;
-}
+import { StyleProp, TextStyle, ViewStyle } from "react-native";
+import { ISelectItem } from "../types";
 interface ISelect<T> {
     labelStyle?: StyleProp<TextStyle>;
     containerStyle?: StyleProp<ViewStyle>;
