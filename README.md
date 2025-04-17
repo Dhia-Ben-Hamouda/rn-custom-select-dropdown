@@ -38,7 +38,7 @@ Make sure you’ve properly configured:
 
 ```tsx
 import React, { useState } from "react";
-import { View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Select, { ISelectItem } from "rn-custom-select-dropdown";
 import { england, france, spain } from "./assets";
 
@@ -65,13 +65,15 @@ export default function App() {
     useState<ISelectItem<string> | null>(null);
 
   return (
-    <View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <Select
         data={countries}
         selectedValue={selectedValue}
-        onChange={setSelectedValue}
+        onChange={(newValue) => {
+          setSelectedValue(newValue);
+        }}
       />
-    </View>
+    </GestureHandlerRootView>
   );
 }
 ```
