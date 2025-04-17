@@ -1,6 +1,6 @@
 {
   "name": "rn-custom-select-dropdown",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A customizable and animated select component for React Native",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,7 +23,7 @@
     "gesture-handler"
   ],
   "author": "Dhia Ben Hamouda",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-native": ">=0.76.0",
