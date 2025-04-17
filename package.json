@@ -5,11 +5,13 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
+    "dist",
     "src",
-    "src/assets/preview.gif"
+    "README.md"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "npx git-cz",
     "build": "tsc"
   },
   "keywords": [
@@ -30,9 +32,9 @@
     "react-native-svg": ">=15.0.0"
   },
   "devDependencies": {
-    "@types/react": "^19.1.2",
+    "@types/react": "^18.0.0",
     "react": "^18.0.0",
-    "react-native": "^0.72.0",
+    "react-native": "^0.76.0",
     "react-native-gesture-handler": "^2.14.0",
     "react-native-reanimated": "^3.0.0",
     "react-native-svg": "^15.11.1",

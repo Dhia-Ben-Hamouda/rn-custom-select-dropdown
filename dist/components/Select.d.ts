@@ -1,7 +1,7 @@
 import React from "react";
 import { ImageSourcePropType, StyleProp, TextStyle, ViewStyle } from "react-native";
 export interface ISelectItem<T> {
-    label?: string;
+    label: string;
     value: T;
     picture?: ImageSourcePropType;
 }
