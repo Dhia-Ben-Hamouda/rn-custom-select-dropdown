@@ -24,8 +24,8 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
-import Divider from "./Divider";
 import { ISelectItem } from "../types";
+import Divider from "./Divider";
 
 const ANIMATION_DURATION = 500;
 const DEFAULT_SELECTED_ITEM_BACKGROUND_COLOR = "#eee";
@@ -377,6 +377,7 @@ export default function Select<T>({
 const styles = StyleSheet.create({
   container: {
     gap: 8,
+    minHeight: 50,
   },
   inputContainer: {
     borderRadius: 8,
