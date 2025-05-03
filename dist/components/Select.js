@@ -204,6 +204,7 @@ function Select({ containerStyle, inputContainerStyle, labelStyle, isRequired = 
 const styles = react_native_1.StyleSheet.create({
     container: {
         gap: 8,
+        minHeight: 50,
     },
     inputContainer: {
         borderRadius: 8,
