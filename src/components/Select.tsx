@@ -36,6 +36,8 @@ const DEFAULT_ARROW_COLOR = "rgba(0,0,0,.75)";
 const DEFAULT_CHECK_COLOR = "rgba(0,0,0,.75)";
 const DEFAULT_ARROW_SIZE = 12;
 const DEFAULT_CHECK_SIZE = 16;
+const DEFAULT_DROPDOWN_OFFSET = 56;
+const DEFAULT_ARROW_ROTATION = -180;
 
 function AngleDown({ size, color }: { size: number; color: string }) {
   return (
@@ -77,6 +79,7 @@ function SelectItem<T>({
   checkSize,
   itemLabelStyle,
   selectedItemLabelStyle,
+  dropdownItemStyle,
 }: {
   onPress: () => void;
   item: ISelectItem<T>;
@@ -90,6 +93,7 @@ function SelectItem<T>({
   checkSize: number;
   itemLabelStyle?: StyleProp<TextStyle>;
   selectedItemLabelStyle?: StyleProp<TextStyle>;
+  dropdownItemStyle?: StyleProp<ViewStyle>;
 }) {
   const isActive = useSharedValue(0);
   const [isActiveItem, setIsActiveItem] = useState(false);
@@ -148,7 +152,7 @@ function SelectItem<T>({
     <>
       <AnimatedPressable
         onPress={onPress}
-        style={[styles.dropdownItem, animatedContainerStyle]}
+        style={[styles.dropdownItem, dropdownItemStyle, animatedContainerStyle]}
       >
         <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
           {picture && (
@@ -208,6 +212,9 @@ interface ISelect<T> {
   customArrowIcon?: React.ReactNode;
   onSelectOpened?: () => void;
   onSelectClosed?: () => void;
+  customDropdownOffset?: number;
+  dropdownItemStyle?: StyleProp<ViewStyle>;
+  customArrowRotation?: number;
 }
 
 export default function Select<T>({
@@ -239,6 +246,9 @@ export default function Select<T>({
   customArrowIcon,
   onSelectClosed,
   onSelectOpened,
+  customDropdownOffset = DEFAULT_DROPDOWN_OFFSET,
+  dropdownItemStyle,
+  customArrowRotation = DEFAULT_ARROW_ROTATION,
 }: ISelect<T>) {
   const isOpen = useSharedValue(0);
   const dropdownRef = useAnimatedRef<Animated.ScrollView>();
@@ -247,7 +257,7 @@ export default function Select<T>({
     const rotation = interpolate(
       isOpen.value,
       [0, 1],
-      [0, -180],
+      [0, customArrowRotation],
       Extrapolation.CLAMP
     );
 
@@ -278,7 +288,7 @@ export default function Select<T>({
       overflow: "hidden",
       position: "absolute",
       width: "100%",
-      top: 56,
+      top: customDropdownOffset,
       zIndex: 99999,
     };
   });
@@ -350,6 +360,7 @@ export default function Select<T>({
                 selectedItemLabelStyle={selectedItemLabelStyle}
                 checkColor={checkColor}
                 checkSize={checkSize}
+                dropdownItemStyle={dropdownItemStyle}
                 onPress={() => {
                   onChange && onChange(item);
                   if (shouldCloseAfterSelection) {

@@ -112,6 +112,9 @@ export default function App() {
 | `isArrowShown`                | `boolean`                            | `true`            | Show or hide the arrow icon                            |
 | `onSelectOpened`              | `() => void`                         | `undefined`       | Callback triggered when the dropdown opens             |
 | `onSelectClosed`              | `() => void`                         | `undefined`       | Callback triggered when the dropdown closes            |
+| `customDropdownOffset`        | `number`                             | `56`              | distance between input and dropdown                    |
+| `dropdownItemStyle`           | `StyleProp<ViewStyle>`               | `undefined`       | style for the dropdown item                            |
+| `customArrowRotation`         | `number`                             | `-180`            | arrow rotation angle                                   |
 
 ## 📦 `ISelectItem<T>`
 

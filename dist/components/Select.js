@@ -52,6 +52,8 @@ const DEFAULT_ARROW_COLOR = "rgba(0,0,0,.75)";
 const DEFAULT_CHECK_COLOR = "rgba(0,0,0,.75)";
 const DEFAULT_ARROW_SIZE = 12;
 const DEFAULT_CHECK_SIZE = 16;
+const DEFAULT_DROPDOWN_OFFSET = 56;
+const DEFAULT_ARROW_ROTATION = -180;
 function AngleDown({ size, color }) {
     return (<react_native_svg_1.default width={size} height={size} viewBox="0 0 448 512">
       <react_native_svg_1.Path fill={color} d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/>
@@ -66,7 +68,7 @@ function Check({ size, color }) {
 }
 const AnimatedScrollView = react_native_reanimated_1.default.createAnimatedComponent(react_native_gesture_handler_1.ScrollView);
 const AnimatedPressable = react_native_reanimated_1.default.createAnimatedComponent(react_native_1.Pressable);
-function SelectItem({ onPress, item, value, picture, itemBackgroundColor = DEFAULT_ITEM_BACKGROUND_COLOR, selectedItemBackgroundColor = DEFAULT_SELECTED_ITEM_BACKGROUND_COLOR, itemLabelColor = DEFAULT_ITEM_LABEL_COLOR, selectedItemLabelColor = DEFAULT_SELECTED_ITEM_LABEL_COLOR, checkColor, checkSize, itemLabelStyle, selectedItemLabelStyle, }) {
+function SelectItem({ onPress, item, value, picture, itemBackgroundColor = DEFAULT_ITEM_BACKGROUND_COLOR, selectedItemBackgroundColor = DEFAULT_SELECTED_ITEM_BACKGROUND_COLOR, itemLabelColor = DEFAULT_ITEM_LABEL_COLOR, selectedItemLabelColor = DEFAULT_SELECTED_ITEM_LABEL_COLOR, checkColor, checkSize, itemLabelStyle, selectedItemLabelStyle, dropdownItemStyle, }) {
     const isActive = (0, react_native_reanimated_1.useSharedValue)(0);
     const [isActiveItem, setIsActiveItem] = (0, react_1.useState)(false);
     (0, react_1.useEffect)(() => {
@@ -100,7 +102,7 @@ function SelectItem({ onPress, item, value, picture, itemBackgroundColor = DEFAU
         };
     });
     return (<>
-      <AnimatedPressable onPress={onPress} style={[styles.dropdownItem, animatedContainerStyle]}>
+      <AnimatedPressable onPress={onPress} style={[styles.dropdownItem, dropdownItemStyle, animatedContainerStyle]}>
         <react_native_1.View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
           {picture && (<react_native_1.Image resizeMode="contain" style={{ width: 20, height: 20 }} source={picture}/>)}
           <react_native_reanimated_1.default.Text style={[
@@ -118,11 +120,11 @@ function SelectItem({ onPress, item, value, picture, itemBackgroundColor = DEFAU
       </AnimatedPressable>
     </>);
 }
-function Select({ containerStyle, inputContainerStyle, labelStyle, isRequired = false, isError, errorMessage, label, placeholder = "Select option", data = [], onChange, value, shouldCloseAfterSelection = false, isArrowShown = true, itemBackgroundColor, selectedItemBackgroundColor, itemLabelColor, selectedItemLabelColor, itemLabelStyle, selectedItemLabelStyle, checkColor = DEFAULT_CHECK_COLOR, checkSize = DEFAULT_CHECK_SIZE, arrowColor = DEFAULT_ARROW_COLOR, arrowSize = DEFAULT_ARROW_SIZE, placeholderStyle, arrowContainerStyle, customArrowIcon, onSelectClosed, onSelectOpened, }) {
+function Select({ containerStyle, inputContainerStyle, labelStyle, isRequired = false, isError, errorMessage, label, placeholder = "Select option", data = [], onChange, value, shouldCloseAfterSelection = false, isArrowShown = true, itemBackgroundColor, selectedItemBackgroundColor, itemLabelColor, selectedItemLabelColor, itemLabelStyle, selectedItemLabelStyle, checkColor = DEFAULT_CHECK_COLOR, checkSize = DEFAULT_CHECK_SIZE, arrowColor = DEFAULT_ARROW_COLOR, arrowSize = DEFAULT_ARROW_SIZE, placeholderStyle, arrowContainerStyle, customArrowIcon, onSelectClosed, onSelectOpened, customDropdownOffset = DEFAULT_DROPDOWN_OFFSET, dropdownItemStyle, customArrowRotation = DEFAULT_ARROW_ROTATION, }) {
     const isOpen = (0, react_native_reanimated_1.useSharedValue)(0);
     const dropdownRef = (0, react_native_reanimated_1.useAnimatedRef)();
     const animatedArrowStyle = (0, react_native_reanimated_1.useAnimatedStyle)(() => {
-        const rotation = (0, react_native_reanimated_1.interpolate)(isOpen.value, [0, 1], [0, -180], react_native_reanimated_1.Extrapolation.CLAMP);
+        const rotation = (0, react_native_reanimated_1.interpolate)(isOpen.value, [0, 1], [0, customArrowRotation], react_native_reanimated_1.Extrapolation.CLAMP);
         return {
             transform: [
                 {
@@ -143,7 +145,7 @@ function Select({ containerStyle, inputContainerStyle, labelStyle, isRequired = 
             overflow: "hidden",
             position: "absolute",
             width: "100%",
-            top: 56,
+            top: customDropdownOffset,
             zIndex: 99999,
         };
     });
@@ -182,7 +184,7 @@ function Select({ containerStyle, inputContainerStyle, labelStyle, isRequired = 
       <react_native_reanimated_1.default.View style={[animatedDropdownStyle]}>
         <AnimatedScrollView style={[styles.dropdown]} ref={dropdownRef}>
           {data === null || data === void 0 ? void 0 : data.map((item, index) => (<react_native_1.View key={index}>
-              <SelectItem value={value} item={item} picture={item === null || item === void 0 ? void 0 : item.picture} itemBackgroundColor={itemBackgroundColor} selectedItemBackgroundColor={selectedItemBackgroundColor} itemLabelColor={itemLabelColor} selectedItemLabelColor={selectedItemLabelColor} itemLabelStyle={itemLabelStyle} selectedItemLabelStyle={selectedItemLabelStyle} checkColor={checkColor} checkSize={checkSize} onPress={() => {
+              <SelectItem value={value} item={item} picture={item === null || item === void 0 ? void 0 : item.picture} itemBackgroundColor={itemBackgroundColor} selectedItemBackgroundColor={selectedItemBackgroundColor} itemLabelColor={itemLabelColor} selectedItemLabelColor={selectedItemLabelColor} itemLabelStyle={itemLabelStyle} selectedItemLabelStyle={selectedItemLabelStyle} checkColor={checkColor} checkSize={checkSize} dropdownItemStyle={dropdownItemStyle} onPress={() => {
                 onChange && onChange(item);
                 if (shouldCloseAfterSelection) {
                     isOpen.value = (0, react_native_reanimated_1.withTiming)(0, {

@@ -30,6 +30,9 @@ interface ISelect<T> {
     customArrowIcon?: React.ReactNode;
     onSelectOpened?: () => void;
     onSelectClosed?: () => void;
+    customDropdownOffset?: number;
+    dropdownItemStyle?: StyleProp<ViewStyle>;
+    customArrowRotation?: number;
 }
-export default function Select<T>({ containerStyle, inputContainerStyle, labelStyle, isRequired, isError, errorMessage, label, placeholder, data, onChange, value, shouldCloseAfterSelection, isArrowShown, itemBackgroundColor, selectedItemBackgroundColor, itemLabelColor, selectedItemLabelColor, itemLabelStyle, selectedItemLabelStyle, checkColor, checkSize, arrowColor, arrowSize, placeholderStyle, arrowContainerStyle, customArrowIcon, onSelectClosed, onSelectOpened, }: ISelect<T>): React.JSX.Element;
+export default function Select<T>({ containerStyle, inputContainerStyle, labelStyle, isRequired, isError, errorMessage, label, placeholder, data, onChange, value, shouldCloseAfterSelection, isArrowShown, itemBackgroundColor, selectedItemBackgroundColor, itemLabelColor, selectedItemLabelColor, itemLabelStyle, selectedItemLabelStyle, checkColor, checkSize, arrowColor, arrowSize, placeholderStyle, arrowContainerStyle, customArrowIcon, onSelectClosed, onSelectOpened, customDropdownOffset, dropdownItemStyle, customArrowRotation, }: ISelect<T>): React.JSX.Element;
 export {};
